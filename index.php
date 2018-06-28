@@ -48,10 +48,10 @@ $posts = array_reverse($posts);
 </head>
 <body>
     <h1>BBS</h1>
-    <form>
+    <form action="" method="post">
         message: <input type="text" name="message">
         user: <input type="text" name="user">
-        <input type="submit" name="投稿">
+        <input type="submit" value="投稿">
     </form>
     <h2>投稿一覧(<?php echo count($posts); ?>件)</h2>
     <ul>
