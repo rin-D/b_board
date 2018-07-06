@@ -29,6 +29,7 @@ if(isset($_POST['login'])) {
 	while ($row = $result->fetch_assoc()) {
 		$db_hashed_pwd = $row['password'];
 		$user_id = $row['user_id'];
+		$username = $row['username'];
 	}
 
 	// データベースの切断
@@ -40,6 +41,7 @@ if(isset($_POST['login'])) {
 
 	if (password_verify($password, $db_hashed_pwd)) {
 		$_SESSION['user'] = $user_id;
+		$_SESSION['username'] = $username;
 		header("Location: home.php");
 		exit;
 	} else { ?>

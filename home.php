@@ -4,49 +4,86 @@ include_once 'dbconnect.php';
 if(!isset($_SESSION['user'])) {
 	header("Location: index.php");
 }
+ 
+$db_host = 'localhost';
+$db_name = 'register_func';
+$db_user = 'root';
+$db_pass = 'vagrant';
+ 
+// データベースへ接続する
+$link = mysqli_connect( $db_host, $db_user, $db_pass, $db_name );
 
-// ユーザーIDからユーザー名を取り出す
-$query = "SELECT * FROM users WHERE user_id=".$_SESSION['user']."";
-$result = $mysqli->query($query);
+if ( $link !== false ) {
+    $msg     = '';
+    $err_msg = '';
+ 
+    // 書き込むボタンが押された時の処理
+    if ( isset( $_POST['send'] ) === true ) {
 
-$result = $mysqli->query($query);
-if (!$result) {
-	print('クエリーが失敗しました。' . $mysqli->error);
-	$mysqli->close();
-	exit();
+        $name     = $_SESSION['username'];
+        $comment = $_POST['comment'];
+ 
+        // コメントが空欄でない場合
+        if ( $comment !== '' ) {
+
+            $query = " INSERT INTO board ( "
+                   . "    name , "
+                   . "    comment "
+                   . " ) VALUES ( "
+                   . "'" . mysqli_real_escape_string( $link, $name ) ."', "
+                   . "'" . mysqli_real_escape_string( $link, $comment ) . "'"
+                   ." ) ";
+ 
+            $res   = mysqli_query( $link, $query );
+            
+            if ( $res !== false ) {
+                $msg = '書き込みに成功しました';
+            }else{
+                $err_msg = '書き込みに失敗しました';
+            }
+
+        // コメントが空欄だった場合
+        }else{
+            $err_msg = 'コメントを記入してください';
+        }
+    }
+ 
+ 
+    $query  = "SELECT id, name, comment FROM board";
+    $res    = mysqli_query( $link,$query );
+    $data = array();
+    while( $row = mysqli_fetch_assoc( $res ) ) {
+        array_push( $data, $row);
+    }
+    arsort( $data );
+ 
+// そもそもデータベースに接続失敗してた場合
+} else {
+    echo "データベースの接続に失敗しました";
 }
-
-// ユーザー情報の取り出し
-while ($row = $result->fetch_assoc()) {
-	$username = $row['username'];
-	$email = $row['email'];
-}
-
-// データベースの切断
-$result->close();
-
+ 
+// データベースへの接続を閉じる
+mysqli_close( $link );
 ?>
-<!DOCTYPE HTML>
-<html lang="ja">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>PHPのマイページ機能</title>
-<link rel="stylesheet" href="style.css">
-<!-- Bootstrap読み込み（スタイリングのため） -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
-</head>
-</head>
-<body>
-<div class="col-xs-6 col-xs-offset-3">
-
-<h1>プロフィール</h1>
-<ul>
-	<li>名前：<?php echo $username; ?></li>
-	<li>メールアドレス：<?php echo $email; ?></li>
-</ul>
-<a href="logout.php?logout">ログアウト</a>
-
-</div>
-</body>
+ 
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    </head>
+    <body>
+    	<a href="mypage.php?mypage">マイページ</a>
+        <form method="post" action="">
+            <!-- 名前<input type="text" name="name" value="" /> -->
+            コメント<textarea name="comment" rows="4" cols="20"></textarea>
+           <input type="submit" name="send" value="書き込む" />
+        </form>
+        <!-- ここに、書き込まれたデータを表示する -->
+<?php
+    if ( $msg     !== '' ) echo '<p>' . $msg . '</p>';
+    if ( $err_msg !== '' ) echo '<p style="color:#f00;">' . $err_msg . '</p>';
+    foreach( $data as $key => $val ){
+        echo $val['name'] . ' ' . $val['comment'] . '<br>';
+    }
+?>
+    </body>
 </html>
