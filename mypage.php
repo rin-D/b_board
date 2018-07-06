@@ -45,10 +45,9 @@ $result->close();
 	<li>名前：<?php echo $username; ?></li>
 	<li>メールアドレス：<?php echo $email; ?></li>
 </ul>
-<a href="logout.php?logout">ログアウト</a>
-<br>
 <a href="arrange_prof.php?arrange_prof">アカウント情報の変更</a>
-
+<br>
+<a href="logout.php?logout">ログアウト</a>
 </div>
 </body>
 </html>
