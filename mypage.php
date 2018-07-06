@@ -47,7 +47,7 @@ $result->close();
 </ul>
 <a href="home.php?home">トップに戻る</a>
 <br>
-<a href="arrange_prof.php?arrange_prof">アカウント情報の変更</a>
+<a href="arrange_prof.php?arrange_prof">パスワードの変更</a>
 <br>
 <a href="logout.php?logout">ログアウト</a>
 <h2>あなたの投稿</h2>
