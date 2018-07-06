@@ -31,7 +31,7 @@ $result->close();
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>PHPのマイページ機能</title>
+<title>マイページ</title>
 <link rel="stylesheet" href="style.css">
 <!-- Bootstrap読み込み（スタイリングのため） -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
@@ -45,9 +45,12 @@ $result->close();
 	<li>名前：<?php echo $username; ?></li>
 	<li>メールアドレス：<?php echo $email; ?></li>
 </ul>
+<a href="home.php?home">トップに戻る</a>
+<br>
 <a href="arrange_prof.php?arrange_prof">アカウント情報の変更</a>
 <br>
 <a href="logout.php?logout">ログアウト</a>
+<h2>あなたの投稿</h2>
 </div>
 </body>
 </html>

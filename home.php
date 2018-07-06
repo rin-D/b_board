@@ -20,6 +20,7 @@ if ( $link !== false ) {
     // 書き込むボタンが押された時の処理
     if ( isset( $_POST['send'] ) === true ) {
 
+    	$user_id = $_SESSION['user'];
         $name     = $_SESSION['username'];
         $comment = $_POST['comment'];
  
@@ -27,9 +28,11 @@ if ( $link !== false ) {
         if ( $comment !== '' ) {
 
             $query = " INSERT INTO board ( "
+            	   . "    user_id , "
                    . "    name , "
                    . "    comment "
                    . " ) VALUES ( "
+                   . "'" . mysqli_real_escape_string( $link, $user_id ) ."', "
                    . "'" . mysqli_real_escape_string( $link, $name ) ."', "
                    . "'" . mysqli_real_escape_string( $link, $comment ) . "'"
                    ." ) ";
@@ -49,7 +52,7 @@ if ( $link !== false ) {
     }
  
  
-    $query  = "SELECT id, name, comment FROM board";
+    $query  = "SELECT id, user_id, name, comment FROM board";
     $res    = mysqli_query( $link,$query );
     $data = array();
     while( $row = mysqli_fetch_assoc( $res ) ) {
