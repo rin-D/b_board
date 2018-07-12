@@ -73,7 +73,8 @@ $result->close();
 <h2>あなたの投稿</h2>
 <?php	
     foreach( $data as $key => $val ){
-        echo $val['comment'] . '<br>';
+        // echo $val['comment'] . '<br>';
+        echo($data);
     }	
 ?>
 </div>
