@@ -36,7 +36,6 @@ if (!$res) {
 $data = array();
 
 while ($row = $res->fetch_assoc()) {
-	echo "resを表示" ." ". $row;
 	$comment = $row['comment'];
 	array_push($data, $row);
 }
