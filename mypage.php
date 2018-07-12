@@ -7,10 +7,10 @@ if(!isset($_SESSION['user'])) {
 
 
 // ユーザーIDからユーザー名を取り出す
+
 $query = "SELECT * FROM users WHERE user_id=".$_SESSION['user']."";
 $result = $mysqli->query($query);
 
-$result = $mysqli->query($query);
 if (!$result) {
 	print('クエリーが失敗しました。' . $mysqli->error);
 	$mysqli->close();
@@ -23,13 +23,20 @@ while ($row = $result->fetch_assoc()) {
 }
 
 
-//ログイン中のユーザーのコメントを取り出す
-$query  = "SELECT comment FROM board WHERE name = $username";
-$res    = $mysqli->query($query);
+// ユーザー名を指定してコメントを表示
 
+$query = " SELECT * FROM board WHERE name = ".$username."";
+$res = $mysqli->query($query);
+if (!$res) {
+	print('クエリーが失敗しました。' . $mysqli->error);
+	$mysqli->close();
+	exit();
+}
+// コメントの取り出し
 while ($row = $result->fetch_assoc()) {
 	$comment = $row['comment'];
 }
+
 
 
 // データベースの切断
@@ -61,13 +68,11 @@ $result->close();
 <br>
 <a href="logout.php?logout">ログアウト</a>
 <h2>あなたの投稿</h2>
-
-<?php
-    foreach( $data as $key => $val ){
-        echo $val['comment'] . '<br>';
+<?php	
+	foreach( $data as $key => $val ){
+        echo $val['name'] . ' ' . $val['comment'] . '<br>';
     }
 ?>
-
 </div>
 </body>
 </html>
