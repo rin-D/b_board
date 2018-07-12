@@ -27,7 +27,7 @@ while ($row = $result->fetch_assoc()) {
 
 //ログイン中のユーザーのコメントを取り出す
 $query  = "SELECT comment FROM board WHERE name = $username";
-$res    = mysqli_query( $link,$query );
+$res    = $mysqli->query($query);
 $data = array();
 while( $row = mysqli_fetch_assoc( $res ) ) {
     array_push( $data, $row);
