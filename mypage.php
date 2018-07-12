@@ -69,9 +69,7 @@ $result->close();
 <a href="logout.php?logout">ログアウト</a>
 <h2>あなたの投稿</h2>
 <?php	
-	foreach( $data as $key => $val ){
-        echo $val['name'] . ' ' . $val['comment'] . '<br>';
-    }
+	echo($comment)
 ?>
 </div>
 </body>
