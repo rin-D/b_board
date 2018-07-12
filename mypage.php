@@ -16,8 +16,6 @@ if (!$result) {
 	$mysqli->close();
 	exit();
 }
-
-
 // ユーザー情報の取り出し
 while ($row = $result->fetch_assoc()) {
 	$username = $row['username'];
@@ -28,11 +26,10 @@ while ($row = $result->fetch_assoc()) {
 //ログイン中のユーザーのコメントを取り出す
 $query  = "SELECT comment FROM board WHERE name = $username";
 $res    = $mysqli->query($query);
-$data = array();
-while( $row = mysqli_fetch_assoc( $res ) ) {
-    array_push( $data, $row);
+
+while ($row = $result->fetch_assoc()) {
+	$comment = $row['comment'];
 }
-arsort( $data );
 
 
 // データベースの切断
