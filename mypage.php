@@ -64,13 +64,13 @@ $result->close();
 <br>
 <a href="logout.php?logout">ログアウト</a>
 <h2>あなたの投稿</h2>
+
 <?php
-    if ( $msg     !== '' ) echo '<p>' . $msg . '</p>';
-    if ( $err_msg !== '' ) echo '<p style="color:#f00;">' . $err_msg . '</p>';
     foreach( $data as $key => $val ){
         echo $val['comment'] . '<br>';
     }
 ?>
+
 </div>
 </body>
 </html>
