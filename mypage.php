@@ -69,7 +69,7 @@ $result->close();
 <a href="logout.php?logout">ログアウト</a>
 <h2>あなたの投稿</h2>
 <?php	
-	echo($comment);
+	echo("あああ");
 ?>
 </div>
 </body>
