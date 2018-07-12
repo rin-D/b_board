@@ -5,6 +5,7 @@ if(!isset($_SESSION['user'])) {
 	header("Location: index.php");
 }
 
+
 // ユーザーIDからユーザー名を取り出す
 $query = "SELECT * FROM users WHERE user_id=".$_SESSION['user']."";
 $result = $mysqli->query($query);
@@ -16,11 +17,23 @@ if (!$result) {
 	exit();
 }
 
+
 // ユーザー情報の取り出し
 while ($row = $result->fetch_assoc()) {
 	$username = $row['username'];
 	$email = $row['email'];
 }
+
+
+//ログイン中のユーザーのコメントを取り出す
+$query  = "SELECT comment FROM board WHERE name = $username";
+$res    = mysqli_query( $link,$query );
+$data = array();
+while( $row = mysqli_fetch_assoc( $res ) ) {
+    array_push( $data, $row);
+}
+arsort( $data );
+
 
 // データベースの切断
 $result->close();
@@ -51,6 +64,13 @@ $result->close();
 <br>
 <a href="logout.php?logout">ログアウト</a>
 <h2>あなたの投稿</h2>
+<?php
+    if ( $msg     !== '' ) echo '<p>' . $msg . '</p>';
+    if ( $err_msg !== '' ) echo '<p style="color:#f00;">' . $err_msg . '</p>';
+    foreach( $data as $key => $val ){
+        echo $val['comment'] . '<br>';
+    }
+?>
 </div>
 </body>
 </html>
