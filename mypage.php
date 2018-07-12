@@ -74,7 +74,7 @@ $result->close();
 <?php	
     foreach( $data as $key => $val ){
         // echo $val['comment'] . '<br>';
-        echo($row);
+        echo($comment);
     }	
 ?>
 </div>
