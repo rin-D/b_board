@@ -25,7 +25,7 @@ while ($row = $result->fetch_assoc()) {
 
 // ユーザー名を指定してコメントを表示
 
-$query = " SELECT * FROM board WHERE name = ".$username."";
+$query = " SELECT * FROM board WHERE user_id=".$_SESSION['user']."";
 $res = $mysqli->query($query);
 if (!$res) {
 	print('クエリーが失敗しました。' . $mysqli->error);
