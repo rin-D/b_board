@@ -37,12 +37,11 @@ while ($row = $res->fetch_assoc()) {
 	$comment = $row['comment'];
 }
 
-
-
 // データベースの切断
 $result->close();
 
 ?>
+
 <!DOCTYPE HTML>
 <html lang="ja">
 <head>
@@ -69,7 +68,9 @@ $result->close();
 <a href="logout.php?logout">ログアウト</a>
 <h2>あなたの投稿</h2>
 <?php	
-	echo($comment);
+    foreach( $comment as $key => $val ){
+        echo $val['comment'] . '<br>';
+    }	
 ?>
 </div>
 </body>
