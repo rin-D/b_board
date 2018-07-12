@@ -36,9 +36,9 @@ if (!$res) {
 $data = array();
 
 while ($row = $res->fetch_assoc()) {
-	echo "rowを表示" ." ". $row;
+	echo "resを表示" ." ". $row;
 	$comment = $row['comment'];
-	array_push($data, $comment);
+	array_push($data, $row);
 }
 arsort( $data );
 
@@ -74,7 +74,7 @@ $result->close();
 <h2>あなたの投稿</h2>
 <?php	
     foreach( $data as $key => $val ){
-        // echo $val['comment'] . '<br>';
+        echo $val['comment'] . '<br>';
     }	
 ?>
 </div>
