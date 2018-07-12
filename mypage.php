@@ -33,7 +33,7 @@ if (!$res) {
 	exit();
 }
 // コメントの取り出し
-while ($row = $result->fetch_assoc()) {
+while ($row = $res->fetch_assoc()) {
 	$comment = $row['comment'];
 }
 
@@ -69,7 +69,7 @@ $result->close();
 <a href="logout.php?logout">ログアウト</a>
 <h2>あなたの投稿</h2>
 <?php	
-	echo("あああ");
+	echo($comment);
 ?>
 </div>
 </body>
