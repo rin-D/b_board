@@ -33,9 +33,13 @@ if (!$res) {
 	exit();
 }
 // コメントの取り出し
+$data = array();
+
 while ($row = $res->fetch_assoc()) {
 	$comment = $row['comment'];
+	array_push($data, $comment);
 }
+arsort( $data );
 
 // データベースの切断
 $result->close();
@@ -68,7 +72,7 @@ $result->close();
 <a href="logout.php?logout">ログアウト</a>
 <h2>あなたの投稿</h2>
 <?php	
-    foreach( $comment as $key => $val ){
+    foreach( $data as $key => $val ){
         echo $val['comment'] . '<br>';
     }	
 ?>
