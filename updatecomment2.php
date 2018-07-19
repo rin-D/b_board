@@ -8,6 +8,7 @@ if(!isset($_SESSION['user'])) {
 }
 
 var_dump($_POST['id']);
+var_dump($_POST['comment']);
 
 if(empty($_POST)) {
 	echo "<a href='mypage.php'>マイページに戻る</a>";
