@@ -1,9 +1,11 @@
 <?php
  
 header("Content-type: text/html; charset=utf-8");
- 
-require_once("db_sample01.php");
-$mysqli = db_connect();
+session_start();
+include_once("dbconnect.php");
+if(!isset($_SESSION['user'])) {
+	header("Location: index.php");
+}
  
 if(empty($_POST)) {
 	echo "<a href='delete1.php'>delete1.php</a>←こちらのページからどうぞ";
