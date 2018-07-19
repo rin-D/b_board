@@ -19,20 +19,16 @@ if(empty($_POST)) {
 	else{
 		//プリペアドステートメント
 		$stmt = $mysqli->prepare("UPDATE board SET comment=? WHERE id=?");
-		if ($stmt) {
-			//プレースホルダへ実際の値を設定する
-			$stmt->bind_param('si', $comment, $id);
-			$comment = $_POST['comment'];
-			$id = $_POST['id'];
+		//プレースホルダへ実際の値を設定する
+		$comment = $_POST['comment'];
+		$id = $_POST['id'];
+		$stmt->bind_param('si', $comment, $id);
 			
-			//クエリ実行
-			$stmt->execute();
-			//ステートメント切断
-			$stmt->close();
-		}else{
-			echo $mysqli->errno . $mysqli->error;
+		//クエリ実行
+		$stmt->execute();
+		//ステートメント切断
+		$stmt->close();
 		}
-	}
 }
  
 // データベース切断
