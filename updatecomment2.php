@@ -47,6 +47,8 @@ $mysqli->close();
 </head>
 <body>
 <h1>変更画面</h1> 
-	echo "変更完了しました";
+
+変更完了しました!<br>
+<a href="mypage.php?mypage">マイページに戻る</a>
 </body>
 </html>
