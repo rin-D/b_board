@@ -7,17 +7,14 @@ if(!isset($_SESSION['user'])) {
 	header("Location: index.php");
 }
 
-var_dump($_POST['id']);
-var_dump($_POST['comment']);
-
 if(empty($_POST)) {
 	echo "<a href='mypage.php'>マイページに戻る</a>";
 	exit();
 }else{
 	//名前入力チェック
 	if (!isset($_POST['comment'])  || $_POST['comment'] === "" ){
-		echo "コメントが入力されていません。";
-		echo "<a href='mypage.php'>マイページに戻る</a>";
+		echo "入力エラーが発生しました：コメントを入力してください";
+		echo "<a href='updatecomment.php'>もう一度入力する</a>";
 		exit();
 	}
 	
