@@ -1,12 +1,14 @@
 <?php
  
 header("Content-type: text/html; charset=utf-8");
- 
-require_once("dbconnect.php");
-$mysqli = db_connect();
- 
+session_start();
+include_once("dbconnect.php");
+if(!isset($_SESSION['user'])) {
+	header("Location: index.php");
+}
+
 if(empty($_POST)) {
-	echo "は？";
+	echo "<a href='mypage.php'>マイページに戻る</a>";
 	exit();
 }else{
 	if (!isset($_POST['id'])  || !is_numeric($_POST['id']) ){
