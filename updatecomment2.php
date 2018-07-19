@@ -17,6 +17,8 @@ if(empty($_POST)) {
 	//名前入力チェック
 	if (!isset($_POST['comment'])  || $_POST['comment'] === "" ){
 		echo "コメントが入力されていません。";
+
+		exit();
 	}
 	
 	else{
