@@ -13,10 +13,10 @@ if(empty($_POST)) {
 }else{
 	//名前入力チェック
 	if (!isset($_POST['comment'])  || $_POST['comment'] === "" ){
-		$errors['comment'] = "コメントが入力されていません。";
+		echo "コメントが入力されていません。";
 	}
 	
-	if(count($errors) === 0){
+	else{
 		//プリペアドステートメント
 		$stmt = $mysqli->prepare("UPDATE board SET comment=? WHERE id=?");
 		if ($stmt) {
@@ -47,16 +47,6 @@ $mysqli->close();
 </head>
 <body>
 <h1>変更画面</h1> 
- 
-<?php if (count($errors) === 0): ?>
-<p>変更完了しました。</p>
-<?php elseif(count($errors) > 0): ?>
-<?php
-foreach($errors as $value){
-	echo "<p>".$value."</p>";
-}
-?>
-<?php endif; ?>
- 
+	echo "変更完了しました";
 </body>
 </html>
