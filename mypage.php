@@ -73,7 +73,15 @@ $result->close();
 <h2>あなたの投稿</h2>
 <?php	
     foreach( $data as $key => $val ){
-        echo $val['comment'] . '<br>';
+?>
+        <?php
+        	echo $val['comment'] . '<br>';
+        ?>
+        <form action="updatecomment.php" method="post">
+		<input type="submit" value="編集する">
+		<input type="hidden" name="user_id" value="<?=$row['user_id']?>">
+		</form>
+<?php
     }	
 ?>
 </div>
