@@ -7,8 +7,6 @@ if(!isset($_SESSION['user'])) {
 	header("Location: index.php");
 }
 
-var_dump($_POST['id']);
-
 if(empty($_POST)) {
 	echo "<a href='mypage.php'>マイページに戻る</a>";
 	exit();
