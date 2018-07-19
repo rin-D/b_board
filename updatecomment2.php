@@ -18,7 +18,7 @@ if(empty($_POST)) {
 	
 	if(count($errors) === 0){
 		//プリペアドステートメント
-		$stmt = $mysqli->prepare("UPDATE comment SET comment=? WHERE id=?");
+		$stmt = $mysqli->prepare("UPDATE board SET comment=? WHERE id=?");
 		if ($stmt) {
 			//プレースホルダへ実際の値を設定する
 			$stmt->bind_param('si', $comment, $id);
