@@ -36,6 +36,7 @@ if (!$res) {
 $data = array();
 
 while ($row = $res->fetch_assoc()) {
+	$id = $row['id'];
 	$comment = $row['comment'];
 	array_push($data, $row);
 }
@@ -84,7 +85,7 @@ $result->close();
         <td>
        		<form action="updatecomment.php" method="post">
 			<input type="submit" value="編集する">
-			<input type="hidden" name="id" value= "<?=$row['id']; ?>">
+			<input type="hidden" name="id" value= "<?php echo $val['id']; ?>">
 			</form>
 		</td>
 		<td>
