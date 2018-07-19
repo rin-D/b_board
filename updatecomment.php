@@ -6,7 +6,7 @@ require_once("dbconnect.php");
 $mysqli = db_connect();
  
 if(empty($_POST)) {
-	echo "<a href='mypage.php'>mypage.php</a>←こちらのページからどうぞ";
+	echo "<a href='mypage.php'>マイページに戻る</a>";
 	exit();
 }else{
 	if (!isset($_POST['id'])  || !is_numeric($_POST['id']) ){
