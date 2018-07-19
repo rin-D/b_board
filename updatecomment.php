@@ -54,7 +54,7 @@ $mysqli->close();
 <p>コメントを変更して下さい。</p>
 <form action="updatecomment2.php" method="post">
 <input type="text" name="comment" value="<?=htmlspecialchars($name, ENT_QUOTES, 'UTF-8')?>">
-<input type="hidden" name="id" value="<?=$id?>">
+<input type="hidden" name="id" value="$id">
 <input type="submit" value="変更する">
 </form>
  

@@ -84,7 +84,7 @@ $result->close();
         <td>
        		<form action="updatecomment.php" method="post">
 			<input type="submit" value="編集する">
-			<input type="hidden" name="id" value="<?=$row['id']?>">
+			<input type="hidden" name="id" value="$row['id']">
 			</form>
 		</td>
 		<td>
