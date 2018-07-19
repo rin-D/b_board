@@ -11,36 +11,33 @@ if(empty($_POST)) {
 	echo "<a href='mypage.php'>マイページに戻る</a>";
 	exit();
 }else{
-	// if (!isset($_POST['id'])  || !is_numeric($_POST['id']) ){
-	// 	echo "IDエラー";
-	// 	exit();
-	// }else{
+	//名前入力チェック
+	if (!isset($_POST['comment'])  || $_POST['comment'] === "" ){
+		$errors['comment'] = "コメントが入力されていません。";
+	}
+	
+	if(count($errors) === 0){
 		//プリペアドステートメント
-		$stmt = $mysqli->prepare("SELECT * FROM board WHERE id=?");
+		$stmt = $mysqli->prepare("UPDATE comment SET comment=? WHERE id=?");
 		if ($stmt) {
 			//プレースホルダへ実際の値を設定する
-			$stmt->bind_param('i', $id);
+			$stmt->bind_param('si', $comment, $id);
+			$comment = $_POST['comment'];
 			$id = $_POST['id'];
 			
 			//クエリ実行
 			$stmt->execute();
-			
-			//結果変数のバインド
-			$stmt->bind_result($id,$comment);
-			// 値の取得
-			$stmt->fetch();
-						
 			//ステートメント切断
 			$stmt->close();
 		}else{
 			echo $mysqli->errno . $mysqli->error;
 		}
 	}
-// }
+}
  
 // データベース切断
 $mysqli->close();
- 
+		
 ?>
  
 <!DOCTYPE html>
@@ -51,12 +48,15 @@ $mysqli->close();
 <body>
 <h1>変更画面</h1> 
  
-<p>コメントを変更して下さい。</p>
-<form action="updatecomment2.php" method="post">
-<input type="text" name="comment" value="<?=htmlspecialchars($name, ENT_QUOTES, 'UTF-8')?>">
-<input type="hidden" name="id" value="<?=$id?>">
-<input type="submit" value="変更する">
-</form>
+<?php if (count($errors) === 0): ?>
+<p>変更完了しました。</p>
+<?php elseif(count($errors) > 0): ?>
+<?php
+foreach($errors as $value){
+	echo "<p>".$value."</p>";
+}
+?>
+<?php endif; ?>
  
 </body>
 </html>
