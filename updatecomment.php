@@ -11,7 +11,7 @@ if(empty($_POST)) {
 	echo "<a href='mypage.php'>マイページに戻る</a>";
 	exit();
 }else{
-	
+
 	// if (!isset($_POST['id'])  || !is_numeric($_POST['id']) ){
 	// 	echo "IDエラー";
 	// 	exit();
@@ -44,8 +44,8 @@ $mysqli->close();
  
 ?>
  
-<!DOCTYPE html>
-<html>
+<!DOCTYPE HTML>
+<html lang="ja">
 <head>
 <title>変更画面</title>
 </head>

@@ -84,11 +84,13 @@ $result->close();
         <td>
        		<form action="updatecomment.php" method="post">
 			<input type="submit" value="編集する">
+			<input type="hidden" name="id" value="$row['id']">
 			</form>
 		</td>
 		<td>
 			<form action="deletecomment.php" method="post">
 			<input type="submit" value="削除する">
+			<input type="hidden" name="id" value="<?=$row['id']?>">
 			</form>
 		</td>
 </tr>
