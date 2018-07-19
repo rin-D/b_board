@@ -91,7 +91,7 @@ $result->close();
 		<td>
 			<form action="deletecomment.php" method="post">
 			<input type="submit" value="削除する">
-			<input type="hidden" name="id" value="<?=$row['id']; ?>">
+			<input type="hidden" name="id" value="<?php echo $val['id']; ?>">
 			</form>
 		</td>
 </tr>

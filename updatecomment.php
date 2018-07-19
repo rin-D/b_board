@@ -11,10 +11,10 @@ if(empty($_POST)) {
 	echo "<a href='mypage.php'>マイページに戻る</a>";
 	exit();
 }else{
-	// if (!isset($_POST['id'])  || !is_numeric($_POST['id']) ){
-	// 	echo "IDエラー";
-	// 	exit();
-	// }else{
+	if (!isset($_POST['id'])  || !is_numeric($_POST['id']) ){
+		echo "IDエラー";
+		exit();
+	}else{
 		//プリペアドステートメント
 		$stmt = $mysqli->prepare("SELECT * FROM board WHERE id=?");
 		if ($stmt) {
