@@ -71,21 +71,29 @@ $result->close();
 <br>
 <a href="logout.php?logout">ログアウト</a>
 <h2>あなたの投稿</h2>
+
+<table border='1'>
+<tr><td>コメント</td><td>コメントを編集する</td><td>コメントを削除する</td></tr>
+
 <?php	
     foreach( $data as $key => $val ){
 ?>
-        <?php
-        	echo $val['comment'] . '<br>';
-        ?>
-        <form action="updatecomment.php" method="post">
-		<input type="submit" value="編集する">
-		<input type="hidden" name="user_id" value="<?=$row['user_id']?>">
-		</form>
 
-		<form action="deletecomment.php" method="post">
-		<input type="submit" value="削除する">
-		<input type="hidden" name="user_id" value="<?=$row['user_id']?>">
-		</form>
+<tr>
+        <td><?=$val['comment']?></td>
+        <td>
+       		<form action="updatecomment.php" method="post">
+			<input type="submit" value="編集する">
+			<input type="hidden" name="user_id" value="<?=$row['user_id']?>">
+			</form>
+		</td>
+		<td>
+			<form action="deletecomment.php" method="post">
+			<input type="submit" value="削除する">
+			<input type="hidden" name="user_id" value="<?=$row['user_id']?>">
+			</form>
+		</td>
+</tr>
 
 <?php
     }	
