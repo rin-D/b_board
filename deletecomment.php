@@ -27,9 +27,11 @@ if(empty($_POST)) {
 			
 			//変更された行の数が1かどうか
 			if($stmt->affected_rows == 1){
-				echo "削除いたしました。";
+				echo "削除が完了しました。";
+				echo "<a href='mypage.php'>マイページに戻る</a>";
 			}else{
-				echo "削除失敗です";
+				echo "削除に失敗しました";
+				echo "<a href='mypage.php'>マイページに戻る</a>";
 			}
 		
 			//ステートメント切断
@@ -44,3 +46,4 @@ if(empty($_POST)) {
 $mysqli->close();
 
 ?>
+
