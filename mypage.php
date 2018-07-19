@@ -81,9 +81,16 @@ $result->close();
 		<input type="submit" value="編集する">
 		<input type="hidden" name="user_id" value="<?=$row['user_id']?>">
 		</form>
+
+		<form action="deletecomment.php" method="post">
+		<input type="submit" value="削除する">
+		<input type="hidden" name="user_id" value="<?=$row['user_id']?>">
+		</form>
+
 <?php
     }	
 ?>
+
 </div>
 </body>
 </html>
